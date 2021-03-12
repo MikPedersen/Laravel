@@ -1,4 +1,4 @@
-<!
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,6 @@
 <body>
 <h1>My blog post</h1>
 
-<p>{{ $post }}</p>
+<p>{{ $post->body }}</p>
 </body>
 </html>
