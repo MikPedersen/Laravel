@@ -21,6 +21,9 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
 // vi bruger test viewet og viser hvad brugeren har skrevet i url, desuden har vi brugt inline som svarer til Lambda i java.
 Route::get('/test', function () {
     return view('test', [
