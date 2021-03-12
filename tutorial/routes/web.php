@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ArticlesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,10 @@ Route::get('/contact', function () {
 });
 
 Route::get('/about', function () {
-    return view('about');
+    //Hent alle artikler fra DB og sorter seneste først
+    return view('about', [
+        'articles' => App\Models\Article::take(3)->latest()->get()
+    ]);
 });
 // vi bruger test viewet og viser hvad brugeren har skrevet i url, desuden har vi brugt inline som svarer til Lambda i java.
 Route::get('/test', function () {
@@ -30,5 +34,10 @@ Route::get('/test', function () {
         'name' => request('name')
     ]);
 });
+
+//Viser article siden fra menuen
+Route::get('/articles', [ArticlesController::class, 'index']);
+//viser en specific article
+Route::get('/articles/{article}', [ArticlesController::class, 'show']);
 
 Route::get('/posts/{post}', [PostsController::class, 'show']);
