@@ -37,7 +37,42 @@ Route::get('/test', function () {
 
 //Viser article siden fra menuen
 Route::get('/articles', [ArticlesController::class, 'index']);
+
+//Gemmer vores artikel i DB
+Route::post('/articles', [ArticlesController::class, 'store']);
+
+//Opret en artikel
+Route::get('/articles/create', [ArticlesController::class, 'create']);
+
 //viser en specific article
 Route::get('/articles/{article}', [ArticlesController::class, 'show']);
 
+//viser en specific article ud fra url'ens id
+Route::get('/articles/{article}/edit', [ArticlesController::class, 'edit']);
+
+//Gemmer den opdaterede artikel i DB
+Route::put('/articles/{article}', [ArticlesController::class, 'update']);
+
 Route::get('/posts/{post}', [PostsController::class, 'show']);
+
+
+
+//CRUD for articles
+//Post /articles - Create new
+//Get /articles - Read
+//Get /articles/:id - Read specific
+//PUT /articles/:id - update
+//Delete /articles/:id - delete
+
+//Crud eksempel for videos
+//Get /videos
+//Get /videos/create
+//Post /videos
+//Get /videos/2
+//Get /videos/2/edit
+//Put /videos/2
+//Delete /videos/2
+
+//Get /videos/subscribe - hvis man vil lave en subscription option
+
+//Post /videos/subscriptions => VideoSubscriptionsController@store // Husk dette er laravel 6
