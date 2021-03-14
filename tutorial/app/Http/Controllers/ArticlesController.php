@@ -10,67 +10,70 @@ class ArticlesController extends Controller
     //CRUD for artikler
     //Kan autogeneres med "php artisan make:controller NavnpåController -r -m
     //Med ovenstående får du samtidig linket eller oprettet den tilhørende model
-    public function index() {
+
+    public function index(){
+
         //Viser alle objekter - i dette tilfælde artikler
 
-        $articles = Article::latest()->get();
+        if(request('tag')){
+            $articles = Tag::where('name', request('tag'))->firstOrFail()->articles;
+        } else {
+            $articles = Article::latest()->get();
+        }
 
         return view('articles.index', ['articles' => $articles]);
     }
 
-    public function show($id) {
+
+    public function show(Article $article)
+    {
         //Viser et specifikt objekt - i dette tilfælde en artikel valgt med id
-        $article = Article::find($id);
 
         return view('articles.show', ['article' => $article]);
     }
 
     public function create(){
         //Opret et nyt objekt - en artikel
-        Return view('articles.create');
+
+        return view('articles.create', [
+//            'tags' => Tag::all()
+        ]);
     }
 
     public function store(){
         //validation
+        Article::create($this->validateArticle());
 
-        //Gemmer den nye artikel i DB
-        $article = new Article();
-
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-
-        $article->save();
-
-        return redirect('/articles');
+        return redirect(route('articles.index'));
     }
 
-    public function edit($id){
-        $article = Article::find($id);
-
+    public function edit(Article $article){
         //Viser et eksisterende objekt og giver mulighed for at redigere denne.
-        return view('articles.edit', compact('article')); // ['article' => $article]) alternativ til compact
+        return view('articles.edit', compact('article')); //['article' => $article]) alternativ til compact
     }
 
-    public function update($id){
-        //Gemmer det opdaterede objekt i DB
-        $article = Article::find($id);
+    public function update(Article $article){
+        //validation og gemmer i DB
+        $article->update($this->validateArticle());
 
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-
-        $article->save();
-
-        return redirect('/articles/' . $article->id);
+        return redirect(route('articles.show', $article));
+//        return redirect($article->path()); //cleaner
     }
 
-    public function destroy(){
+    public function destroy()
+    {
         //Sletter det valgte objekt fra DB
 
     }
 
-
+    protected function validateArticle(){
+        return request()->validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required',
+            'tags' => 'exists:tags,id'
+        ]);
+    }
 
 
 }
