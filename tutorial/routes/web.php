@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ContactController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,12 +57,8 @@ Route::get('/articles/{article}/edit', [ArticlesController::class, 'edit']);
 //Gemmer den opdaterede artikel i DB
 Route::put('/articles/{article}', [ArticlesController::class, 'update']);
 
-
-
-
-
-
-
+Route::get('/contact', [ContactController::class, 'show']);
+Route::post('/contact', [ContactController::class, 'store']);
 
 
 
