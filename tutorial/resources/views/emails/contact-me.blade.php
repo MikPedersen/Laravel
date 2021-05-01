@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@component('mail::message')
+    # A heading
 
-    <title>Email</title>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et justo tincidunt, pretium massa id, malesuada diam. Donec sed tortor et leo tempus gravida. Fusce rutrum sagittis risus, eu pulvinar tellus euismod sit amet. Nunc congue massa ut consequat convallis.
 
-</head>
+    - A list
+    - goes
+    - here
 
-<body class="bg-gray-100 flex items-center justify-center h-full">
-<h1>It works again!</h1>
+    @component('mail::button', ['url' => 'https://laracasts.com'])
+        Visit Laracasts
+    @endcomponent
 
-<p>It sounds like you want to hear more about {{ $topic }}.</p>
-</body>
-
-</html>
+@endcomponent
