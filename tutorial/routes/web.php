@@ -81,3 +81,7 @@ Route::post('/contact', [ContactController::class, 'store']);
 //Get /videos/subscribe - hvis man vil lave en subscription option
 
 //Post /videos/subscriptions => VideoSubscriptionsController@store // Husk dette er laravel 6
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
