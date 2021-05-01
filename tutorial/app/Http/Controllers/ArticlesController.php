@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Tag;
 
 class ArticlesController extends Controller
 {
@@ -33,16 +34,21 @@ class ArticlesController extends Controller
     }
 
     public function create(){
-        //Opret et nyt objekt - en artikel
-
         return view('articles.create', [
-//            'tags' => Tag::all()
+            'tags' => Tag::all()
         ]);
     }
 
     public function store(){
-        //validation
-        Article::create($this->validateArticle());
+        $this->validateArticle();
+
+        $article = new Article(request(['title', 'excerpt', 'body']));
+        $article->user_id = 1;
+        $article->save();
+
+        if (request()->has('tags')){
+            $article->tags()->attach(request('tags'));
+        }
 
         return redirect(route('articles.index'));
     }
