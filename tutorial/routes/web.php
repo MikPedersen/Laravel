@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
@@ -85,3 +86,6 @@ Route::post('/contact', [ContactController::class, 'store']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('payments/create', [PaymentsController::class, 'create'])->middleware('auth');
+Route::post('payments/create', [PaymentsController::class, 'store'])->middleware('auth');
