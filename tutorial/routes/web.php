@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserNotificationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
@@ -92,3 +94,8 @@ Route::get('payments/create', [PaymentsController::class, 'create'])->middleware
 Route::post('payments', [PaymentsController::class, 'store'])->middleware('auth');
 
 Route::get('notifications', [UserNotificationsController::class, 'show'])->middleware('auth');
+
+Route::get('conversations', [ConversationController::class, 'index']);
+Route::get('conversations/{conversation}', [ConversationController::class, 'show']);
+
+Route::post('best-replies/{reply}', [ReplyController::class, 'store']);
