@@ -27,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::before(function (User $user){
+           if ($user->id == 6) { //User 6 is set to admin
+               return true;
+           }
+        });
+
 //        Gate::define('update-conversation', function (User $user, Conversation $conversation){
 //           return $conversation->user->is($user);
 //        });
