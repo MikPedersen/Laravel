@@ -54,4 +54,19 @@ class User extends Authenticatable
         //her skal brugerens tlf nummer være pt. er det bare dummydata
         return 'xxxxxxxxxx';
     }
+
+    public function roles(){
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    public function assignRole($role){
+        if (is_string($role)){
+            $role = Role::whereName($role)->firstOrFail(); // Try to find the role if it's a string
+        }
+        $this->roles()->sync($role, false); //sync allows to assign the role more than once
+    }
+
+    public function abilities(){
+        return $this->roles->map->abilities->flatten()->pluck('name')->unique();
+    }
 }

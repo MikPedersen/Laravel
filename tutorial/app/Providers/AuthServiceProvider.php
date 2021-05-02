@@ -33,6 +33,11 @@ class AuthServiceProvider extends ServiceProvider
            }
         });
 
+        Gate::before(function ($user, $ability){
+            // The user who signed in
+            return $user->abilities()->contains($ability);
+        });
+
 //        Gate::define('update-conversation', function (User $user, Conversation $conversation){
 //           return $conversation->user->is($user);
 //        });

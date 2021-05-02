@@ -99,3 +99,5 @@ Route::get('conversations', [ConversationController::class, 'index']);
 Route::get('conversations/{conversation}', [ConversationController::class, 'show']);
 
 Route::post('best-replies/{reply}', [ReplyController::class, 'store']);
+
+Route::get('/reports', function(){return 'the secret reports';})->middleware('can:view_reports');
