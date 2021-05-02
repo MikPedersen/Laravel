@@ -115,6 +115,18 @@
       <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/symfony/var-dumper" />
       <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/theseer/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/laravel/ui" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/laminas/laminas-zendframework-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/laminas/laminas-diactoros" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/lcobucci/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/vonage/nexmo-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/vonage/client-core" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/vonage/client" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/laravel/nexmo-notification-channel" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/nexmo/laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/nexmo/client-core" />
+      <excludeFolder url="file://$MODULE_DIR$/tutorial/vendor/nexmo/client" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

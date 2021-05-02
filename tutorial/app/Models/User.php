@@ -48,4 +48,10 @@ class User extends Authenticatable
     public function projects(){
         return $this->hasMany(Project::class);
     }
+
+    public function routeNotificationForNexmo($notification)
+    {
+        //her skal brugerens tlf nummer være pt. er det bare dummydata
+        return 'xxxxxxxxxx';
+    }
 }

@@ -5,20 +5,21 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 
 class PaymentReceived extends Notification
 {
     use Queueable;
-
+    protected $amount;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($amount)
     {
-        //
+        $this->amount = $amount;
     }
 
     /**
@@ -29,7 +30,7 @@ class PaymentReceived extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database', 'nexmo'];
     }
 
     /**
@@ -49,6 +50,18 @@ class PaymentReceived extends Notification
     }
 
     /**
+     * Get the Vonage / SMS representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\NexmoMessage
+     */
+    public function toNexmo($notifiable)
+    {
+        return (new NexmoMessage)
+            ->content('Your SMS message content');
+    }
+
+    /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
@@ -57,7 +70,7 @@ class PaymentReceived extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'amount' => $this->amount
         ];
     }
 }
